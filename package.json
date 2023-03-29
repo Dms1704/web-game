@@ -1,7 +1,7 @@
 {
-  "name": "tool-and-test-web",
+  "name": "web-game",
   "version": "1.0.0",
-  "description": "一个简单的测试",
+  "description": "web game",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -22,10 +22,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/minshuai/tool-and-test-web.git"
+    "url": "git+https://gitlab.com/minshuai/web-game.git"
   },
   "bugs": {
-    "url": "https://gitlab.com/minshuai/tool-and-test-web/issues"
+    "url": "https://gitlab.com/minshuai/web-game/issues"
   },
-  "homepage": "https://gitlab.com/minshuai/tool-and-test-web#readme"
+  "homepage": "https://gitlab.com/minshuai/web-game#readme"
 }
