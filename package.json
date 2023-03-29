@@ -1,0 +1,31 @@
+{
+  "name": "tool-and-test-web",
+  "version": "1.0.0",
+  "description": "一个简单的测试",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build src/index.html"
+  },
+  "author": "minshuai",
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "eslint-plugin-prettier": "^4.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.34.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.6.0",
+    "parcel-bundler": "^1.12.5",
+    "prettier": "^2.8.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/minshuai/tool-and-test-web.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/minshuai/tool-and-test-web/issues"
+  },
+  "homepage": "https://gitlab.com/minshuai/tool-and-test-web#readme"
+}
