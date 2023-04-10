@@ -120,12 +120,53 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"game/canvas/untitled.js":[function(require,module,exports) {
 init = function init() {
   var cvsMyCanvas = document.getElementById('debug-canvas');
+  var oCtx = cvsMyCanvas.getContext('2d');
+  iCvsWidth = cvsMyCanvas.clientWidth;
+  iCvsHeight = cvsMyCanvas.clientHeight;
   var myAnimation = function myAnimation(iNow) {
     cvsMyCanvas.iRequestAnimationKey = window.requestAnimationFrame(myAnimation);
     render();
   };
-  var render = function render() {};
+  var render = function render() {
+    oCtx.clearRect(0, 0, 400, 400);
+    renderPellets(50);
+  };
+  var renderPellets = function renderPellets(iNum) {
+    for (var i = 0; i < iNum; i++) {
+      Pellet.randomInstance().draw(oCtx);
+    }
+  };
   myAnimation(window.performance.now);
+};
+var iCvsWidth;
+var iCvsHeight;
+var funRandom = Math.random;
+// outputs: 1, 2, 3......
+var funRandomInt = function funRandomInt(iMax) {
+  return Math.floor(iMax * funRandom()) + 1;
+};
+// choose one in 50% probability
+var funRandowChooseOne = function funRandowChooseOne(iFirst, iSecond) {
+  return funRandomInt(2) === 1 ? funRandomInt(iFirst) : funRandomInt(iSecond);
+};
+var arrColor = ['blue', 'white', 'red', 'green'];
+function Pellet(iX, iY, iRadius, sColor) {
+  var iX;
+  var iY;
+  var iRadius;
+  var sColor;
+  this.draw = function (oCtx) {
+    oCtx.moveTo(iX, iY);
+    oCtx.arc(iX, iY, iRadius, 0, Math.PI, true);
+    oCtx.fillStyle = sColor;
+    oCtx.fill();
+  };
+}
+Pellet.newInstance = function (iX, iY, iRadius, sColor) {
+  return new Pellet(iX, iY, iRadius, sColor);
+};
+Pellet.randomInstance = function () {
+  return Pellet.newInstance(funRandomInt(iCvsWidth), funRandomInt(iCvsHeight), funRandowChooseOne(2, 4), arrColor[funRandomInt(4)]);
 };
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -152,7 +193,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65357" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56349" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
