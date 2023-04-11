@@ -141,7 +141,6 @@ init = function init() {
 var iCvsWidth;
 var iCvsHeight;
 var funRandom = Math.random;
-// outputs: 1, 2, 3......
 var funRandomInt = function funRandomInt(iMax) {
   return Math.floor(iMax * funRandom()) + 1;
 };
@@ -193,7 +192,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56349" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52659" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
