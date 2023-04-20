@@ -242,7 +242,7 @@
 
 		eq: function (i) {
 			var len = this.length,
-				j = +i + (i < 0 ? len : 0);
+				j = +i + (i < 0 ? len : 0); // +没有其他含义，-是取反
 			return this.pushStack(j >= 0 && j < len ? [this[j]] : []);
 		},
 
@@ -432,6 +432,7 @@
 		},
 
 		// results is for internal usage only
+		// 将 arr 加到 results 后面
 		makeArray: function (arr, results) {
 			var ret = results || [];
 
@@ -494,6 +495,7 @@
 		},
 
 		// arg is for internal usage only
+		// 根据给定数组生成需要的数组
 		map: function (elems, callback, arg) {
 			var length,
 				value,
@@ -3108,6 +3110,13 @@
 	function nodeName(elem, name) {
 		return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
 	}
+	/** 正则解析如下
+	 * 	<	标签左括号
+		([a-z][^\/\0>:\x20\t\r\n\f]*)	标签内容：排除 <input stype="a:b"/>
+		[\x20\t\r\n\f]* 	空格
+		\/?>	<input/> 和 <input></input>
+		(?:<\/\1>|)		结束标签
+	 */
 	var rsingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 	// Implement the identical functionality for filter and not
@@ -3208,6 +3217,7 @@
 		// Prioritize #id over <tag> to avoid XSS via location.hash (trac-9521)
 		// Strict HTML recognition (trac-11290: must start with <)
 		// Shortcut simple #id case for speed
+		// 匹配 html 元素或 #id 表达式
 		rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
 		init = (jQuery.fn.init = function (selector, context, root) {
 			var match, elem;
@@ -3224,9 +3234,11 @@
 			// Handle HTML strings
 			if (typeof selector === 'string') {
 				if (selector[0] === '<' && selector[selector.length - 1] === '>' && selector.length >= 3) {
+					// 如果是 '<asd...>' 就跳过正则检查
 					// Assume that strings that start and end with <> are HTML and skip the regex check
-					match = [null, selector, null];
+					match = [null, selector, null]; // selector 放在第二个元素上表示查出的 <html>捕获组
 				} else {
+					// outputs: [all, <html>捕获组, id捕获组, 其他]
 					match = rquickExpr.exec(selector);
 				}
 
@@ -10152,12 +10164,14 @@
 			return [];
 		}
 		if (typeof context === 'boolean') {
+			// 省略了 context 参数
 			keepScripts = context;
 			context = false;
 		}
 
 		var base, parsed, scripts;
 
+		// 看不懂
 		if (!context) {
 			// Stop scripts or inline event handlers from being executed immediately
 			// by using document.implementation
